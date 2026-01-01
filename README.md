@@ -36,3 +36,7 @@ Run:
 ```bash
 python pipelines/02_weather_api_to_sqlite.py
 ```
+
+### Titanic summary preview
+![Titanic summary preview](https://github.com/user-attachments/assets/b6587f95-f00c-4265-bade-1b67a7b5dabe)
+
