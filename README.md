@@ -40,3 +40,7 @@ python pipelines/02_weather_api_to_sqlite.py
 ### Titanic summary preview
 ![Titanic summary preview](https://github.com/user-attachments/assets/b6587f95-f00c-4265-bade-1b67a7b5dabe)
 
+### Weather summary preview
+![weather](https://github.com/user-attachments/assets/82c37c8e-ddc8-4886-98b0-ca70ff5f4b77)
+
+
