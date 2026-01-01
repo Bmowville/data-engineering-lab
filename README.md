@@ -21,7 +21,13 @@ This repo will stay lightweight and runnable locally. Setup instructions will li
 ```bash
 pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
+```
 
 ## Example output
 The pipeline generates a summary report here:
 - `reports/titanic_summary.csv`
+
+![Titanic summary preview](https://github.com/user-attachments/assets/b6587f95-f00c-4265-bade-1b67a7b5dabe)
+
+
+
