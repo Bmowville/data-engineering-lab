@@ -8,26 +8,31 @@ A small collection of pipeline projects built in Python + SQL with clear run ste
 ## What you'll find
 - `pipelines/` ingestion + cleaning scripts
 - `sql/` analytics and validation queries
-- `data/` small sample data (or generated)
+- `data/` local databases + downloaded datasets
 - `reports/` generated outputs (CSV summaries)
 
-## First pipeline (coming next)
-Load a public dataset into a local database (SQLite) and produce summary tables + a simple report.
+## Pipelines
 
-## Setup
-This repo will stay lightweight and runnable locally. Setup instructions will live here as the first pipeline lands.
+### 1) Titanic CSV → SQLite → report
+Creates:
+- `data/demo.db`
+- `reports/titanic_summary.csv`
 
-## How to run
+Run:
 ```bash
-pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
 ```
 
-## Example output
-The pipeline generates a summary report here:
-- `reports/titanic_summary.csv`
+### 2) Weather API → SQLite → report
+Appends current weather snapshots for a few cities.
 
-![Titanic summary preview](https://github.com/user-attachments/assets/b6587f95-f00c-4265-bade-1b67a7b5dabe)
+Creates:
+- `data/weather.db`
 
+Updates:
+- `reports/weather_summary.csv`
 
-
+Run:
+```bash
+python pipelines/02_weather_api_to_sqlite.py
+```
