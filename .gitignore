@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Local pipeline outputs
+data/*.db
+data/*.sqlite
+data/*.sqlite3
