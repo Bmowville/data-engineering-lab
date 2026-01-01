@@ -16,3 +16,8 @@ Load a public dataset into a local database (SQLite) and produce summary tables 
 
 ## Setup
 This repo will stay lightweight and runnable locally. Setup instructions will live here as the first pipeline lands.
+
+## How to run
+```bash
+pip install -r requirements.txt
+python pipelines/01_ingest_to_sqlite.py
