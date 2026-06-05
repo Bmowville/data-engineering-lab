@@ -46,7 +46,7 @@ After the first run, inspect:
 - Python pipeline structure with explicit data and report paths
 - CSV ingestion, API ingestion, SQLite loading, and SQL-based summaries
 - Reproducible local outputs that do not require cloud credentials
-- CI smoke test for the deterministic CSV pipeline
+- CI smoke test for the CSV pipeline
 
 ## Pipelines
 

@@ -18,7 +18,9 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run reproducible CSV pipeline
+      - name: Remove existing generated outputs
+        run: rm -f data/demo.db data/titanic.csv reports/titanic_summary.csv
+      - name: Run CSV pipeline
         run: python pipelines/01_ingest_to_sqlite.py
       - name: Verify generated outputs
         run: |
