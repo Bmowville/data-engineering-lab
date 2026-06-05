@@ -12,6 +12,7 @@ Each pipeline starts from an external or raw source, lands data in SQLite, and w
 ## What you'll find
 - `pipelines/` ingestion + cleaning scripts
 - `sql/` analytics and validation queries
+- `scripts/` generated-output validation checks
 - `data/` local databases + downloaded datasets
 - `reports/` generated outputs (CSV summaries)
 
@@ -22,6 +23,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
+python scripts/validate_outputs.py
 ```
 
 macOS/Linux:
@@ -30,6 +32,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
+python scripts/validate_outputs.py
 ```
 
 After the first run, inspect:
@@ -38,14 +41,17 @@ After the first run, inspect:
 
 ## Technical review path
 1. Run the Titanic pipeline to verify ingest, load, and reporting from a clean checkout.
-2. Review `sql/` for the analytics queries behind the reports.
-3. Run the weather pipeline to see an append-style API ingestion example.
-4. Compare generated CSV reports with the preview screenshots below.
+2. Run `python scripts/validate_outputs.py` to verify the SQLite table, SQL files, and summary report.
+3. Review `docs/pipeline-contracts.md` for the expected inputs, storage targets, and output checks.
+4. Review `sql/` for the analytics queries behind the reports.
+5. Run the weather pipeline to see an append-style API ingestion example.
+6. Compare generated CSV reports with the preview screenshots below.
 
 ## Skills demonstrated
 - Python pipeline structure with explicit data and report paths
 - CSV ingestion, API ingestion, SQLite loading, and SQL-based summaries
 - Reproducible local outputs that do not require cloud credentials
+- Data contract validation for generated tables, report schemas, and SQL query execution
 - CI smoke test for the CSV pipeline
 
 ## Pipelines
@@ -54,6 +60,18 @@ After the first run, inspect:
 | --- | --- | --- | --- | --- |
 | Titanic CSV | Public CSV download | `data/demo.db` | `reports/titanic_summary.csv` | Yes |
 | Weather API | Open-Meteo current weather API | `data/weather.db` | `reports/weather_summary.csv` | Manual, live API |
+
+## Validation
+The Titanic pipeline has a local validation script and CI coverage:
+
+```bash
+python pipelines/01_ingest_to_sqlite.py
+python scripts/validate_outputs.py
+```
+
+The validation step checks the generated SQLite table, executes the SQL files in `sql/`, verifies the report schema, and confirms the grouped passenger counts reconcile to the source table.
+
+See `docs/pipeline-contracts.md` for the current pipeline contracts.
 
 ### 1) Titanic CSV → SQLite → report
 Creates:
