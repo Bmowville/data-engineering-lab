@@ -1,9 +1,13 @@
 # Data Engineering Lab
 
+[![CI](https://github.com/Bmowville/data-engineering-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Bmowville/data-engineering-lab/actions/workflows/ci.yml)
+
 Practical, reproducible data engineering exercises: ingest → clean → load → query.
 
 ## What this repo is
 A small collection of pipeline projects built in Python + SQL with clear run steps and repeatable outputs.
+
+It is designed for portfolio review: each pipeline starts from an external or raw source, lands data in SQLite, and writes a report that can be inspected without extra services.
 
 ## What you'll find
 - `pipelines/` ingestion + cleaning scripts
@@ -11,7 +15,45 @@ A small collection of pipeline projects built in Python + SQL with clear run ste
 - `data/` local databases + downloaded datasets
 - `reports/` generated outputs (CSV summaries)
 
+## Quick start
+Windows PowerShell:
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python pipelines/01_ingest_to_sqlite.py
+```
+
+macOS/Linux:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python pipelines/01_ingest_to_sqlite.py
+```
+
+After the first run, inspect:
+- `data/demo.db`
+- `reports/titanic_summary.csv`
+
+## Portfolio review path
+1. Run the Titanic pipeline to verify ingest, load, and reporting from a clean checkout.
+2. Review `sql/` for the analytics queries behind the reports.
+3. Run the weather pipeline to see an append-style API ingestion example.
+4. Compare generated CSV reports with the preview screenshots below.
+
+## Skills demonstrated
+- Python pipeline structure with explicit data and report paths
+- CSV ingestion, API ingestion, SQLite loading, and SQL-based summaries
+- Reproducible local outputs that do not require cloud credentials
+- CI smoke test for the deterministic CSV pipeline
+
 ## Pipelines
+
+| Pipeline | Source | Storage | Output | CI |
+| --- | --- | --- | --- | --- |
+| Titanic CSV | Public CSV download | `data/demo.db` | `reports/titanic_summary.csv` | Yes |
+| Weather API | Open-Meteo current weather API | `data/weather.db` | `reports/weather_summary.csv` | Manual, live API |
 
 ### 1) Titanic CSV → SQLite → report
 Creates:
