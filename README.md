@@ -7,7 +7,7 @@ Practical, reproducible data engineering exercises: ingest → clean → load �
 ## What this repo is
 A small collection of pipeline projects built in Python + SQL with clear run steps and repeatable outputs.
 
-It is designed for portfolio review: each pipeline starts from an external or raw source, lands data in SQLite, and writes a report that can be inspected without extra services.
+Each pipeline starts from an external or raw source, lands data in SQLite, and writes a report that can be inspected without extra services.
 
 ## What you'll find
 - `pipelines/` ingestion + cleaning scripts
@@ -36,7 +36,7 @@ After the first run, inspect:
 - `data/demo.db`
 - `reports/titanic_summary.csv`
 
-## Portfolio review path
+## Technical review path
 1. Run the Titanic pipeline to verify ingest, load, and reporting from a clean checkout.
 2. Review `sql/` for the analytics queries behind the reports.
 3. Run the weather pipeline to see an append-style API ingestion example.
