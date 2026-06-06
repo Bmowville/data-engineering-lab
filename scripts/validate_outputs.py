@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = ROOT / "data" / "demo.db"
+DB_PATH = ROOT / "data" / "titanic.db"
 REPORT_PATH = ROOT / "reports" / "titanic_summary.csv"
 SQL_DIR = ROOT / "sql"
 

@@ -6,7 +6,7 @@ This repo keeps each pipeline contract small enough to run locally and specific 
 
 | Pipeline | Input | Storage | Report | Validation |
 | --- | --- | --- | --- | --- |
-| Titanic CSV | Public CSV downloaded to `data/titanic.csv` | SQLite table `titanic` in `data/demo.db` | `reports/titanic_summary.csv` | Automated in CI |
+| Titanic CSV | Public CSV downloaded to `data/titanic.csv` | SQLite table `titanic` in `data/titanic.db` | `reports/titanic_summary.csv` | Automated in CI |
 | Weather API | Open-Meteo current weather response | SQLite table `weather_current` in `data/weather.db` | `reports/weather_summary.csv` | Manual because it depends on a live API |
 
 ## Titanic Contract
@@ -20,7 +20,7 @@ Expected source fields:
 - `Age`
 
 Expected SQLite output:
-- Database path: `data/demo.db`
+- Database path: `data/titanic.db`
 - Table: `titanic`
 - Row count: 891
 
@@ -40,7 +40,7 @@ python scripts/validate_outputs.py
 
 ## SQL Query Checks
 
-`scripts/validate_outputs.py` executes every `.sql` file in `sql/` against `data/demo.db`. This keeps the example analytics queries connected to the generated table instead of becoming stale documentation.
+`scripts/validate_outputs.py` executes every `.sql` file in `sql/` against `data/titanic.db`. This keeps the example analytics queries connected to the generated table instead of becoming stale documentation.
 
 ## Weather Contract
 

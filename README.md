@@ -36,7 +36,7 @@ python scripts/validate_outputs.py
 ```
 
 After the first run, inspect:
-- `data/demo.db`
+- `data/titanic.db`
 - `reports/titanic_summary.csv`
 
 ## Technical review path
@@ -47,7 +47,7 @@ After the first run, inspect:
 5. Run the weather pipeline to see an append-style API ingestion example.
 6. Compare generated CSV reports with the preview screenshots below.
 
-## Skills demonstrated
+## Technical Scope
 - Python pipeline structure with explicit data and report paths
 - CSV ingestion, API ingestion, SQLite loading, and SQL-based summaries
 - Reproducible local outputs that do not require cloud credentials
@@ -58,7 +58,7 @@ After the first run, inspect:
 
 | Pipeline | Source | Storage | Output | CI |
 | --- | --- | --- | --- | --- |
-| Titanic CSV | Public CSV download | `data/demo.db` | `reports/titanic_summary.csv` | Yes |
+| Titanic CSV | Public CSV download | `data/titanic.db` | `reports/titanic_summary.csv` | Yes |
 | Weather API | Open-Meteo current weather API | `data/weather.db` | `reports/weather_summary.csv` | Manual, live API |
 
 ## Validation
@@ -75,7 +75,7 @@ See `docs/pipeline-contracts.md` for the current pipeline contracts.
 
 ### 1) Titanic CSV → SQLite → report
 Creates:
-- `data/demo.db`
+- `data/titanic.db`
 - `reports/titanic_summary.csv`
 
 Run:

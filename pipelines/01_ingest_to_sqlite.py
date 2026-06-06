@@ -9,7 +9,7 @@ REPORTS_DIR = Path("reports")
 
 CSV_URL = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
 CSV_PATH = DATA_DIR / "titanic.csv"
-DB_PATH = DATA_DIR / "demo.db"
+DB_PATH = DATA_DIR / "titanic.db"
 REPORT_PATH = REPORTS_DIR / "titanic_summary.csv"
 
 
