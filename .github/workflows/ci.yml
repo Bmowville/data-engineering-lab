@@ -22,12 +22,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Remove existing generated outputs
-        run: rm -f data/demo.db data/titanic.csv reports/titanic_summary.csv
+        run: rm -f data/titanic.db data/titanic.csv reports/titanic_summary.csv
       - name: Run CSV pipeline
         run: python pipelines/01_ingest_to_sqlite.py
       - name: Verify generated outputs
         run: |
-          test -f data/demo.db
+          test -f data/titanic.db
           test -f reports/titanic_summary.csv
       - name: Validate generated data contract
         run: python scripts/validate_outputs.py
