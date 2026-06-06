@@ -6,7 +6,7 @@ This repo keeps each pipeline contract small enough to run locally and specific 
 
 | Pipeline | Input | Storage | Report | Validation |
 | --- | --- | --- | --- | --- |
-| Titanic CSV | Public CSV downloaded to `data/titanic.csv` | SQLite table `titanic` in `data/titanic.db` | `reports/titanic_summary.csv` | Automated in CI |
+| Titanic CSV | Public CSV downloaded to `data/titanic.csv` | SQLite table `titanic` in `data/titanic.db` | `reports/titanic_summary.csv`, `reports/data_quality_report.md` | Automated in CI |
 | Weather API | Open-Meteo current weather response | SQLite table `weather_current` in `data/weather.db` | `reports/weather_summary.csv` | Manual because it depends on a live API |
 
 ## Titanic Contract
@@ -31,10 +31,18 @@ Expected report output:
 - Passenger totals reconcile to the `titanic` source table
 - Survival rates stay within 0 to 100 percent
 
+Expected quality report output:
+- Path: `reports/data_quality_report.md`
+- Sections: Summary, Missing Values, Numeric Ranges
+- Row count: 891
+- Duplicate `PassengerId` values: 0
+- Missing expected columns: none
+
 Run locally:
 
 ```bash
 python pipelines/01_ingest_to_sqlite.py
+python scripts/generate_data_quality_report.py
 python scripts/validate_outputs.py
 ```
 
