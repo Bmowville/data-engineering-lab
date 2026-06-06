@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "data" / "titanic.db"
 REPORT_PATH = ROOT / "reports" / "titanic_summary.csv"
+QUALITY_REPORT_PATH = ROOT / "reports" / "data_quality_report.md"
 SQL_DIR = ROOT / "sql"
 
 EXPECTED_REPORT_COLUMNS = [
@@ -23,6 +24,12 @@ EXPECTED_GROUPS = {
     ("male", "2"),
     ("male", "3"),
 }
+EXPECTED_QUALITY_REPORT_SECTIONS = [
+    "# Titanic Data Quality Report",
+    "## Summary",
+    "## Missing Values",
+    "## Numeric Ranges",
+]
 
 
 def require(condition: bool, message: str) -> None:
@@ -78,10 +85,23 @@ def validate_report(expected_total: int) -> None:
         require(0.0 <= survival_rate <= 100.0, f"Invalid survival rate: {survival_rate}")
 
 
+def validate_quality_report() -> None:
+    require(QUALITY_REPORT_PATH.exists(), f"Missing quality report: {QUALITY_REPORT_PATH}")
+
+    text = QUALITY_REPORT_PATH.read_text(encoding="utf-8")
+    for section in EXPECTED_QUALITY_REPORT_SECTIONS:
+        require(section in text, f"Missing quality report section: {section}")
+
+    require("| Rows | 891 |" in text, "Quality report missing expected row count")
+    require("| Duplicate PassengerId values | 0 |" in text, "Unexpected duplicate count")
+    require("| Missing expected columns | none |" in text, "Unexpected missing columns")
+
+
 def main() -> None:
     row_count = validate_database()
     validate_report(row_count)
-    print("Validated Titanic SQLite table, SQL queries, and summary report")
+    validate_quality_report()
+    print("Validated Titanic SQLite table, SQL queries, summary report, and quality report")
 
 
 if __name__ == "__main__":

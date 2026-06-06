@@ -23,6 +23,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
+python scripts/generate_data_quality_report.py
 python scripts/validate_outputs.py
 ```
 
@@ -32,12 +33,14 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python pipelines/01_ingest_to_sqlite.py
+python scripts/generate_data_quality_report.py
 python scripts/validate_outputs.py
 ```
 
 After the first run, inspect:
 - `data/titanic.db`
 - `reports/titanic_summary.csv`
+- `reports/data_quality_report.md`
 
 ## Technical review path
 1. Run the Titanic pipeline to verify ingest, load, and reporting from a clean checkout.
@@ -66,10 +69,11 @@ The Titanic pipeline has a local validation script and CI coverage:
 
 ```bash
 python pipelines/01_ingest_to_sqlite.py
+python scripts/generate_data_quality_report.py
 python scripts/validate_outputs.py
 ```
 
-The validation step checks the generated SQLite table, executes the SQL files in `sql/`, verifies the report schema, and confirms the grouped passenger counts reconcile to the source table.
+The validation step checks the generated SQLite table, executes the SQL files in `sql/`, verifies the report schema, confirms the grouped passenger counts reconcile to the source table, and checks the generated data quality report.
 
 See `docs/pipeline-contracts.md` for the current pipeline contracts.
 
@@ -77,10 +81,12 @@ See `docs/pipeline-contracts.md` for the current pipeline contracts.
 Creates:
 - `data/titanic.db`
 - `reports/titanic_summary.csv`
+- `reports/data_quality_report.md`
 
 Run:
 ```bash
 python pipelines/01_ingest_to_sqlite.py
+python scripts/generate_data_quality_report.py
 ```
 
 ### 2) Weather API → SQLite → report
